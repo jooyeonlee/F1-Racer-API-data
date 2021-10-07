@@ -4,21 +4,21 @@ class Driver {
         this.givenName = data.Driver.givenName;
         this.familyName = data.Driver.familyName;
         this.nationality = data.Driver.nationality;
-        this.sponsor = data.Constructors[0].constructorId
-        this.points = data.points
+        this.sponsor = data.Constructors[0].constructorId;
+        this.points = data.points;
     }
 }
 
-const form = document.querySelector('#f1dataform')
-console.log(form)
+const form = document.querySelector('#f1dataform');
+console.log(form);
 
 form.addEventListener('submit', (event) => {
     event.preventDefault();
     let season = event.path[0][0].value;
     let round = event.path[0][1].value;
 
-    console.log(event)
-    console.log(season, round)
+    console.log(event);
+    console.log(season, round);
 
     requestData(season, round);
 })
@@ -36,11 +36,11 @@ const requestData = async (season, round) => {
         console.log(response.data.MRData.StandingsTable.StandingsLists[0].DriverStandings[0].Driver.familyName);
         console.log(response.data.MRData.StandingsTable.StandingsLists[0].DriverStandings[0].Driver.nationality);
         console.log(response.data.MRData.StandingsTable.StandingsLists[0].DriverStandings[0].points);
-        console.log(response.data.MRData.StandingsTable.StandingsLists[0].DriverStandings[0].Constructors[0].constructorId)
+        console.log(response.data.MRData.StandingsTable.StandingsLists[0].DriverStandings[0].Constructors[0].constructorId);
         
         clearTable();
 
-        driverData = response.data.MRData.StandingsTable.StandingsLists[0].DriverStandings
+        driverData = response.data.MRData.StandingsTable.StandingsLists[0].DriverStandings;
 
         for (let i=0; i < driverData.length; i++) {
             let driver = new Driver(driverData[i]);
@@ -48,7 +48,7 @@ const requestData = async (season, round) => {
             createRow(driver);
         }
     } catch (err) {
-        window.alert("Invalid Input. Please enter valid range of season(1950-2021) and round")
+        window.alert("Invalid Input. Please enter valid range of season(1950-2021) and round");
     }
 }
 
